@@ -10,8 +10,8 @@ h1 {
 
 #grille {
     display: grid;
-    margin: auto 0;
     margin-left: 30vw;
+    z-index: 0;
 }
 
 .sol {
@@ -26,6 +26,11 @@ h1 {
 
 .bonbon {
     background-image: url('../img/bonbon.gif');
+    background-size: contain;
+}
+
+.pacmanman {
+    background-image: url('../img/pacman2.gif');
     background-size: contain;
 }
 
