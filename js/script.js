@@ -109,7 +109,7 @@ document.onkeypress = function(event) {
     console.log(event.key);
     switch(event.key)
     {
-        case"e":
+        case "e":
         case "E":
             PacMan.direction=1;
             break;
@@ -126,5 +126,6 @@ document.onkeypress = function(event) {
             PacMan.direction=0;
             break;
 
+    
     }
 }
