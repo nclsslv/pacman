@@ -80,3 +80,8 @@ h1 {
     background-image:  url('../img/fantome_orange.png');
     background-size: contain;
 }
+
+.fantomebleu {
+    background-image:  url('../img/fantome_bleu.png');
+    background-size: contain;
+}

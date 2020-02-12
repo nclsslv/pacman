@@ -28,25 +28,7 @@ var PacMan = new Pacman();
 var FantomeRouge = new Fantome("fantomerouge");
 var FantomeVert = new Fantome("fantomevert");
 var FantomeOrange = new Fantome("fantomeorange");
-
-/*
-var FantomeRouge = {
-    ligne : 11,
-    col: 9,
-    direction : 2
-};
-
-var FantomeVert = {
-    ligne : 11,
-    col: 9,
-    direction : 2
-};
-
-var FantomeOrange = {
-    ligne : 11,
-    col: 9,
-    direction : 2
-};*/
+var FantomeBleu = new Fantome("fantomebleu");
 
 var score = 0;
 
@@ -91,9 +73,11 @@ function boucleRefresh() {
     FantomeRouge.bougeFantome();
     FantomeVert.bougeFantome();
     FantomeOrange.bougeFantome();
+    FantomeBleu.bougeFantome();
     FantomeRouge.displayFantome();
     FantomeVert.displayFantome();
     FantomeOrange.displayFantome();
+    FantomeBleu.displayFantome();
     setTimeout(boucleRefresh, 100);
 }
 
@@ -121,83 +105,3 @@ document.onkeypress = function(event) {
             break;
     }
 }
-/*
-function displayFantomeVert() {
-let _fantomevert = document.createElement('div');
-_fantomevert.classList.add('fantomevert');
-_fantomevert.style.zIndex = 2;
-
-_fantomevert.style.gridRow = (+FantomeVert.ligne);
-_fantomevert.style.gridColumn = (+FantomeVert.col);
-_grille.append(_fantomevert);
-
-}
-
-function displayFantomeRouge() {
-    let _fantomerouge = document.createElement('div');
-_fantomerouge.classList.add('fantomerouge');
-_fantomerouge.style.zIndex = 2;
-
-_fantomerouge.style.gridRow = (+FantomeRouge.ligne);
-_fantomerouge.style.gridColumn = (+FantomeRouge.col);
-_grille.append(_fantomerouge);
-
-}
-
-function displayFantomeOrange() {
-    let _fantomeorange = document.createElement('div');
-_fantomeorange.classList.add('fantomeorange');
-_fantomeorange.style.zIndex = 2;
-
-_fantomeorange.style.gridRow = (+FantomeOrange.ligne);
-_fantomeorange.style.gridColumn = (+FantomeOrange.col);
-_grille.append(_fantomeorange);
-
-}*/
-
-
-
-
-
-
-    
-
-/*
-function fantomeCollision(Fantome) {
-    if (Fantome.col >= 19 && Fantome.ligne == 11 && Fantome.direction == 0) {
-        Fantome.col = 1;
-        }
-    
- 
-    if (Fantome.col <= 1 && Fantome.ligne == 11 && Fantome.direction == 2) {
-     Fantome.col = 19;
-     }
-
-    if (Fantome.direction == 0) {
-        if (grille[Fantome.ligne-1][Fantome.col-1] == 0) {
-            Fantome.col--;
-        }
-
-     } else if (Fantome.direction == 1) {
-        if (grille[Fantome.ligne-1][Fantome.col-1] == 0) {
-            Fantome.ligne++;
-        }
-
-    } else if (Fantome.direction == 2) {
-        if (grille[Fantome.ligne-1][Fantome.col-1] == 0) {
-            Fantome.col++;
-        }
-
-    } else if (Fantome.direction == 3) {
-        if (grille[Fantome.ligne-1][Fantome.col-1] == 0) {
-            Fantome.ligne--;
-        }
-    }
-
-    if (Fantome.col == PacMan.col && Fantome.ligne == PacMan.ligne) {
-        score = 0;
-        document.location.reload(true);
-    }
-
-    }
-    */
