@@ -36,6 +36,11 @@ h1 {
     background-size: contain;
 }
 
+.mur2 {
+    background-image: url('../img/mur.gif') ;
+    background-size: contain;
+}
+
 .bonbon {
     background-image: url('../img/bonbon.gif');
     background-size: contain;

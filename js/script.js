@@ -1,4 +1,3 @@
-// 0 est un mur, 1 c'est le sol, 2 c'est un bonbon 
 var grille = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], 
     [0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0 ], 
@@ -8,7 +7,7 @@ var grille = [
     [0, 2, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 2, 0 ],
     [0, 2, 2, 2, 2, 0, 2, 2, 2, 0, 2, 2, 2, 0, 2, 2, 2, 2, 0 ],
     [0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0, 0, 0, 2, 0, 0, 0, 0 ],
-    [0, 1, 1, 0, 2, 0, 2, 2, 2, 2, 2, 2, 2, 0, 2, 0, 1, 1, 0 ],
+    [0, 1, 1, 0, 2, 0, 2, 2, 2, 2, 2, 2, 2, 0, 2, 0, 2, 2, 3 ],
     [0, 0, 0, 0, 2, 0, 2, 0, 0, 1, 0, 0, 2, 0, 2, 0, 0, 0, 0 ],
     [2, 2, 2, 2, 2, 2, 2, 0, 1, 1, 1, 0, 2, 2, 2, 2, 2, 2, 2 ],
     [0, 0, 0, 0, 2, 0, 2, 0, 0, 1, 0, 0, 2, 0, 2, 0, 0, 0, 0 ],
@@ -19,22 +18,18 @@ var grille = [
     [0, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 0 ],
     [0, 0, 2, 0, 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 2, 0, 2, 0, 0 ],
     [0, 2, 2, 2, 2, 0, 2, 2, 2, 0, 2, 2, 2, 0, 2, 2, 2, 2, 0 ],
-    [0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0 ],
+    [3, 2, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0 ],
     [0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0 ], 
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
 
 ]
 
-
-/*var PacMan = {
-    ligne : 17,
-    col : 9,
-    direction : 0
-};*/
-
-
 var PacMan = new Pacman();
+var FantomeRouge = new Fantome("fantomerouge");
+var FantomeVert = new Fantome("fantomevert");
+var FantomeOrange = new Fantome("fantomeorange");
 
+/*
 var FantomeRouge = {
     ligne : 11,
     col: 9,
@@ -51,11 +46,12 @@ var FantomeOrange = {
     ligne : 11,
     col: 9,
     direction : 2
-};
+};*/
 
 var score = 0;
 
 var _grille = document.querySelector('#grille');
+
 var _score2 = document.querySelector('#score');
 
 function initGrille() {
@@ -76,6 +72,8 @@ function initGrille() {
             monElem.classList.add("sol");
         } else if(cellule == 2) {
             monElem.classList.add("bonbon");
+        } else if(cellule == 3) {
+            monElem.classList.add("mur2");
         }
         monElem.style.gridRow = (+ligne) + 1;
         monElem.style.gridColumn = (+col) + 1;
@@ -85,54 +83,17 @@ function initGrille() {
     };    
 }
 
-PacMan.bougePacman();
 
-function testCollision() {
-
-    if (PacMan.direction == 0) {
-        if (grille[PacMan.ligne-1][PacMan.col-1] == 0) {
-            PacMan.col--;
-        }
-     } else if (PacMan.direction == 1) {
-        if (grille[PacMan.ligne-1][PacMan.col-1] == 0) {
-            PacMan.ligne++;
-        }
-    } else if (PacMan.direction == 2) {
-        if (grille[PacMan.ligne-1][PacMan.col-1] == 0) {
-            PacMan.col++;
-        }
-    }else if (PacMan.direction == 3) {
-        if (grille[PacMan.ligne-1][PacMan.col-1] == 0) {
-            PacMan.ligne--;
-        }
-    }
-
-    }
-
-function bonbons(){
-// COMPTER LES BONBONS DYNAMIQUEMENT
-
-
-
-    if (grille[PacMan.ligne-1][PacMan.col-1] == 2) {
-        grille[PacMan.ligne-1][PacMan.col-1] = 1;
-        score++;
-        _score2.innerHTML = 'Votre score : ' + score;
-    } 
-    if (score == 191) {
-        window.alert("YOUPI")
-    } 
-}
 
 function boucleRefresh() {
     initGrille();
     PacMan.bougePacman();
-    bougeFantome(FantomeRouge);
-    bougeFantome(FantomeVert);
-    bougeFantome(FantomeOrange);
-    displayFantomeRouge();
-    displayFantomeVert();
-    displayFantomeOrange();
+    FantomeRouge.bougeFantome();
+    FantomeVert.bougeFantome();
+    FantomeOrange.bougeFantome();
+    FantomeRouge.displayFantome();
+    FantomeVert.displayFantome();
+    FantomeOrange.displayFantome();
     setTimeout(boucleRefresh, 100);
 }
 
@@ -160,14 +121,9 @@ document.onkeypress = function(event) {
             break;
     }
 }
-
-
-
-
-
-
+/*
 function displayFantomeVert() {
-    let _fantomevert = document.createElement('div');
+let _fantomevert = document.createElement('div');
 _fantomevert.classList.add('fantomevert');
 _fantomevert.style.zIndex = 2;
 
@@ -197,31 +153,16 @@ _fantomeorange.style.gridRow = (+FantomeOrange.ligne);
 _fantomeorange.style.gridColumn = (+FantomeOrange.col);
 _grille.append(_fantomeorange);
 
-}
+}*/
 
-function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-  }
 
-function bougeFantome(Fantome) {
-   
-    Fantome.direction = getRandomInt(4);
-    if(Fantome.direction == 0) {
-        Fantome.col++;
-    } else if(Fantome.direction == 1) {
-        Fantome.ligne--;
-    } else if(Fantome.direction == 2) {
-        Fantome.col--;
-    } else if(Fantome.direction == 3) {
-        Fantome.ligne++;
-    } else if (Fantome.direction == 0 && cellule == 0) {
-         Fantome.col--;
-    } 
-    fantomeCollision(Fantome);
-    }
+
+
+
+
     
 
-
+/*
 function fantomeCollision(Fantome) {
     if (Fantome.col >= 19 && Fantome.ligne == 11 && Fantome.direction == 0) {
         Fantome.col = 1;
@@ -259,3 +200,4 @@ function fantomeCollision(Fantome) {
     }
 
     }
+    */
