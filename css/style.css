@@ -9,10 +9,21 @@ h1 {
     text-align: center;
 }
 
+#score {
+    text-align: center;
+}
+
 #grille {
     display: grid;
     margin-left: 30vw;
     z-index: 0;
+}
+
+.perdu {
+    width: 39vw;
+    height: 100%;
+    background-color: red;
+    font-size: 200px;
 }
 
 .sol {
@@ -31,7 +42,36 @@ h1 {
 }
 
 .pacmanman {
-    background-image: url('../img/pacman2.gif');
+    background-image: url('../img/pacman2_.gif');
     background-size: contain;
 }
 
+.pacmanmanleft {
+    background-image: url('../img/pacman2_left.gif');
+    background-size: contain;
+}
+
+.pacmanmanup {
+    background-image: url('../img/pacman2_up.gif');
+    background-size: contain;
+}
+
+.pacmanmandown {
+    background-image: url('../img/pacman2_down.gif');
+    background-size: contain;
+}
+
+.fantomerouge {
+    background-image:  url('../img/fantome_rouge.png') ;
+    background-size: contain;
+}
+
+.fantomevert {
+    background-image:  url('../img/fantome_vert.png');
+    background-size: contain;
+}
+
+.fantomeorange {
+    background-image:  url('../img/fantome_orange.png');
+    background-size: contain;
+}
